@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Blog list</h1>
+    <button class="btn btn-primary" onclick="displayFormCreate()">Create new blog</button>
+
+    <form id="searchForm">
+        <div>
+            <label>
+                <input type="text" id="search" placeholder="Enter a word">
+            </label>
+            <button onclick="searchBlog()">Search</button>
+        </div>
+    </form>
+
+    <table id="blogList"></table>
+
+    <form hidden id="form">
+        <div>
+            <label>Name: <input type="text" name="name" id="name" placeholder="Enter Name"></label>
+
+        </div>
+        <div>
+            <label>Description: <input type="text" name="description" id="description" placeholder="Enter Description"></label>
+        </div>
+        <div>Category:
+            <select name="category" id="category">
+            </select>
+        </div>
+        <div>
+            <button type="submit" id="form-button" data-bs-dismiss="modal">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
