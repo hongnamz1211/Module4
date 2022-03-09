@@ -1,7 +1,5 @@
 let index = 0;
 
-
-
 function displayCategory(category) {
     return `<option value="${category.id}">${category.name}</option>`
 }
