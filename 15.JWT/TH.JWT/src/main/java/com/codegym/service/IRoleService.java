@@ -1,4 +1,7 @@
 package com.codegym.service;
 
-public interface IRoleService{
+import com.codegym.model.Role;
+
+public interface IRoleService extends IGeneralService<Role> {
+    Role findByName(String name);
 }

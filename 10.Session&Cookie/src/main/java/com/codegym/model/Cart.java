@@ -45,6 +45,12 @@ public class Cart {
         }
     }
 
+    public void subProduct(Product product) {
+        Map.Entry<Product, Integer> integerEntry = selectItemInCard(product);
+        Integer newQuantity = integerEntry.getValue() - 1;
+        products.replace(integerEntry.getKey(), newQuantity);
+    }
+
     public Integer countProductQuantity() {
         Integer producQuantity = 0;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
@@ -59,9 +65,15 @@ public class Cart {
 
     public Float countTotalPayment() {
         float payment = 0;
-        for (Map.Entry<Product, Integer> entry: products.entrySet()){
+        for (Map.Entry<Product, Integer> entry : products.entrySet()) {
             payment += entry.getKey().getPrice() * (float) entry.getValue();
         }
         return payment;
+    }
+
+    public Double totalPrice(Product product) {
+        Map.Entry<Product, Integer> integerEntry = selectItemInCard(product);
+        Double total = integerEntry.getKey().getPrice() * integerEntry.getValue();
+        return total;
     }
 }

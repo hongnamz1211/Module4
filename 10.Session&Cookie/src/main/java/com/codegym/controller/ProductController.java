@@ -4,6 +4,8 @@ import com.codegym.model.Cart;
 import com.codegym.model.Product;
 import com.codegym.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -44,4 +46,25 @@ public class ProductController {
         cart.addProduct(product.get());
         return "redirect:/shop";
     }
+
+    @GetMapping("/sub/{id}")
+    public String subToCard(@PathVariable long id,
+                            @ModelAttribute Cart cart) {
+        Optional<Product> product = productService.findById(id);
+        cart.subProduct(product.get());
+        cart.totalPrice(product.get());
+        return "redirect:/shopping-cart";
+    }
+
+//    @GetMapping("/sub/{id}")
+//    public ResponseEntity<Optional<Product>> subToCart(@PathVariable long id,
+//                                                       @RequestBody Cart cart) {
+//        Optional<Product> product = productService.findById(id);
+//        if (!product.isPresent()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        cart.subProduct(product.get());
+//        cart.totalPrice(product.get());
+//        return new ResponseEntity<>(product, HttpStatus.OK);
+//    }
 }

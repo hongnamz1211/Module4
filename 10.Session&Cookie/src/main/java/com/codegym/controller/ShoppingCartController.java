@@ -21,4 +21,18 @@ public class ShoppingCartController {
         modelAndView.addObject("cart", cart);
         return modelAndView;
     }
+
+    @GetMapping("/test")
+    public ModelAndView test(@SessionAttribute("cart") Cart cart) {
+        ModelAndView modelAndView = new ModelAndView("test");
+        modelAndView.addObject("cart", cart);
+        return modelAndView;
+    }
+
+    @GetMapping
+    public ModelAndView shop(@SessionAttribute("cart") Cart cart) {
+        ModelAndView modelAndView = new ModelAndView("shop");
+        modelAndView.addObject("cart", cart);
+        return modelAndView;
+    }
 }

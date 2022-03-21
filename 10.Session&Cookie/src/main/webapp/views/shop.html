@@ -22,5 +22,34 @@
         </tr>
     </th:block>
 </table>
+<h1>Your Cart</h1>
+<form th:action="@{shop}" th:object="${cart}" method="post">
+    <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>
+    <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>
+    <table border="1">
+        <tr>
+            <th>Hehe</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        <tr th:each="product:${cart.products}">
+            <td th:text="${product.getKey().name}"></td>
+            <td>
+                <a id="decrease_button" th:text="${'-'}"
+                   th:href="@{/sub/__${product.getKey().id}__}">
+                </a>
+                <span th:text="${product.getValue()}"></span>
+                <a id="increase_button" th:text="${'+'}"
+                   th:href="@{/add/__${product.getKey().id}__(action='show')}">
+                </a>
+            </td>
+            <td th:text="${cart.totalPrice(product.getKey())}"></td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td th:text="${cart.countTotalPayment()}"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
